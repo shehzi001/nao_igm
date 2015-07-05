@@ -14,7 +14,8 @@
 
 #define EIGEN_DONT_VECTORIZE
 #define EIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT
-
+#define Eigen2Support
+#define EIGEN2_SUPPORT_STAGE10_FULL_EIGEN2_API
 #include <Eigen/Geometry>
 #include "joints_sensors_id.h"
 

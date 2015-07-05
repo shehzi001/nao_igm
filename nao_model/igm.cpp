@@ -1,3 +1,5 @@
+#define Eigen2Support
+#define EIGEN2_SUPPORT_STAGE10_FULL_EIGEN2_API
 #include <Eigen/Core>       // Cholesky decomposition + solving
 #include <Eigen/Cholesky>   // of system of linear equations.
 
