@@ -45,12 +45,12 @@ int jointState::checkJointBounds()
 }
 
 
-
 /** @brief Sets the initial configuration of nao (lets call it the standard initial configuration)
     \note Only q[0]...q[23] are set. The posture of the base is not set.
 */
 void jointState::initJointAngles()
 {
+    /*
     // LEFT LEG
     q[L_HIP_YAW_PITCH] =  0.0;
     q[L_HIP_ROLL]      =  0.0;
@@ -84,6 +84,36 @@ void jointState::initJointAngles()
     // HEAD
     q[HEAD_PITCH] =  0.0;
     q[HEAD_YAW]   =  0.0;
+    */
+
+    q[L_HIP_YAW_PITCH]  =  0.0;
+    q[L_HIP_ROLL]       = -0.000384;
+    q[L_HIP_PITCH]      = -0.598291/4;//−0.14957275
+    q[L_KNEE_PITCH]     =  1.009413/1.25;//0.8075304
+    q[L_ANKLE_PITCH]    = -0.492352;
+    q[L_ANKLE_ROLL]     =  0.000469;
+
+    q[R_HIP_YAW_PITCH]  =  0.0;
+    q[R_HIP_ROLL]       = -0.000384;
+    q[R_HIP_PITCH]      = -0.598219/4;
+    q[R_KNEE_PITCH]     =  1.009237/1.25;
+    q[R_ANKLE_PITCH]    = -0.492248;
+    q[R_ANKLE_ROLL]     =  0.000469;
+
+    q[L_SHOULDER_PITCH] =  1.418908;
+    q[L_SHOULDER_ROLL]  =  0.332836;
+    q[L_ELBOW_YAW]      = -1.379108;
+    q[L_ELBOW_ROLL]     = -1.021602;
+    q[L_WRIST_YAW]      = -0.013848;
+
+    q[R_SHOULDER_PITCH] =  1.425128;
+    q[R_SHOULDER_ROLL]  = -0.331386;
+    q[R_ELBOW_YAW]      =  1.383626;
+    q[R_ELBOW_ROLL]     =  1.029356;
+    q[R_WRIST_YAW]      = -0.01078; 
+
+    q[HEAD_PITCH]       =  0.0;     
+    q[HEAD_YAW]         =  0.0;
 }
 
 
@@ -126,6 +156,80 @@ void jointState::initBounds()
     // HEAD                   
     setBounds(HEAD_PITCH      , -2.085700,  2.085700);
     setBounds(HEAD_YAW        , -0.672000,  0.514900);
+
+    /* zeno
+    // LEFT LEG
+    setBounds(L_HIP_YAW_PITCH , -1.78, 1.1345);
+    setBounds(L_HIP_ROLL      , -0.0349, 1.6755);
+    setBounds(L_HIP_PITCH     , -0.05, 1.57);
+    setBounds(L_KNEE_PITCH    , -0.22, 1.62);
+    setBounds(L_ANKLE_PITCH   , -0.48869, 1.099);
+    setBounds(L_ANKLE_ROLL    , -0.54, 0.54);
+                              
+    // RIGHT LEG
+    setBounds(R_HIP_YAW_PITCH , -1.2391, 1.76);
+    setBounds(R_HIP_ROLL      , -0.837, 0.4188);
+    setBounds(R_HIP_PITCH     , -0.2617, 1.57);
+    setBounds(R_KNEE_PITCH    , -0.035, 1.57);
+    setBounds(R_ANKLE_PITCH   , -0.541, 1.25);
+    setBounds(R_ANKLE_ROLL    , -0.558, 0.47);
+                              
+    // LEFT ARM
+    setBounds(L_SHOULDER_PITCH, -2.0594, 2.5132);
+    setBounds(L_SHOULDER_ROLL , -1.4137, 0.122);
+    setBounds(L_ELBOW_YAW     , -1.57, 1.57);
+    setBounds(L_ELBOW_ROLL    , 0.1396, 1.55);
+    setBounds(L_WRIST_YAW     , -1.823800,  1.823800);
+                              
+    // RIGHT ARM
+    setBounds(R_SHOULDER_PITCH, -2.0594, 1.95);
+    setBounds(R_SHOULDER_ROLL , -0.1047, 1.5184);
+    setBounds(R_ELBOW_YAW     , -1.57, 1.57);
+    setBounds(R_ELBOW_ROLL    ,  0.1396, 1.57);
+    setBounds(R_WRIST_YAW     , -1.823800,  1.823800);
+                              
+    // HEAD                   
+    setBounds(HEAD_PITCH      , -2.085700,  2.085700);
+    setBounds(HEAD_YAW        , -0.672000,  0.514900);
+
+    {
+    //left leg
+    'left_hip_yaw': (-1.78, 1.1345),
+    'left_hip_roll': (-0.0349, 1.6755),
+    'left_hip_pitch':  (-0.05, 1.57),
+    'left_knee_pitch':  (-0.22, 1.62),
+    'left_ankle_pitch':  (-0.48869, 1.099),
+    'left_ankle_roll':  (-0.54, 0.54),
+
+    //right leg
+    'right_hip_yaw':  (-1.2391, 1.76),
+    'right_hip_roll':  (-0.837, 0.4188),
+    'right_hip_pitch': (-0.2617, 1.57),
+    'right_knee_pitch':  (-0.035, 1.57),
+    'right_ankle_pitch':  (-0.541, 1.25),
+    'right_ankle_roll': (-0.558, 0.47)
+
+    //left arm
+    'left_shoulder_pitch': (-2.0594, 2.5132),
+    'left_shoulder_roll': (-1.4137, 0.122),
+    'left_elbow_yaw': (-1.57, 1.57),
+    'left_elbow_pitch': (0.1396, 1.55),
+    'left_wrist_yaw': (-1.823800,  1.823800),
+    
+    //right_arm
+    'right_shoulder_pitch': (-2.0594, 1.95),
+    'right_shoulder_roll':(-0.1047, 1.5184),
+    'right_elbow_yaw': (-1.57, 1.57),
+    'right_elbow_pitch': (0.1396, 1.57),
+    'right_wrist_yaw': (-1.823800,  1.823800),
+    
+    //HEAD
+    HEAD_PITCH: (-2.085700,  2.085700)
+    HEAD_YAW        , -0.672000,  0.514900
+    }
+
+    */
+
 }
 
 
